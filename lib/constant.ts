@@ -1,7 +1,7 @@
 export const APP_NAME = "Kepp";
 
 export const URI =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://kepp.vercel.app";
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://keppy.vercel.app/";
 
 export const BUTTONS = [
   "notifications",
