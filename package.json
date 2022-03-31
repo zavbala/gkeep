@@ -6,19 +6,31 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --ignore-path .gitignore --write .",
+    "clear": "rm -rf .next/"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
+    "firebase": "^9.6.10",
     "next": "12.1.1",
+    "next-themes": "^0.1.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-modal": "^3.14.4",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "@types/node": "17.0.23",
     "@types/react": "17.0.43",
     "@types/react-dom": "17.0.14",
+    "@types/react-modal": "^3.13.1",
+    "autoprefixer": "^10.4.4",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.1",
+    "postcss": "^8.4.12",
+    "prettier": "^2.6.1",
+    "tailwindcss": "^3.0.23",
     "typescript": "4.6.3"
   }
 }
