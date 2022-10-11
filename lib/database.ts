@@ -1,18 +1,19 @@
-import { createFirebaseApp } from "./firebase";
-import type { Note } from "./types";
+import type { FirebaseApp } from 'firebase/app';
 import {
-  getDocs,
   collection,
-  getFirestore,
-  getDoc,
-  doc,
-  setDoc,
   deleteDoc,
-} from "firebase/firestore/lite";
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from 'firebase/firestore/lite';
+import { createFirebaseApp } from './firebase';
+import type { Note } from './types';
 
-const firebase = createFirebaseApp();
+const firebase = createFirebaseApp() as FirebaseApp;
 const firestore = getFirestore(firebase);
-const notesRef = collection(firestore, "notes");
+const notesRef = collection(firestore, 'notes');
 
 export default {
   async all() {
@@ -56,6 +57,6 @@ export default {
   async get(id: string) {
     const item = await getDoc(doc(notesRef, id));
     if (item.exists()) return { id: item.id, ...item.data() };
-    else throw new Error("Item Not Found");
+    else throw new Error('Item Not Found');
   },
 };

@@ -1,4 +1,4 @@
-import { initializeApp, getApps } from "firebase/app";
+import { getApps, initializeApp } from 'firebase/app';
 
 export const createFirebaseApp = () => {
   const firebaseConfig = {

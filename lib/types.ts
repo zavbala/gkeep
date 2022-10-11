@@ -1,7 +1,7 @@
-import { PALETTE } from "lib/constant";
+import { PALETTE } from 'lib/constant';
 
 export interface Note {
-  id?: string;
+  id: string;
   title: string;
   content: string;
   color: string;
@@ -10,5 +10,6 @@ export interface Note {
   pinned: boolean;
 }
 
-type Palette = typeof PALETTE["light"];
+type Palette = typeof PALETTE['light'];
+
 export type Colors = keyof Palette;

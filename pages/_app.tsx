@@ -1,12 +1,12 @@
-import "styles/globals.css";
-import type { AppProps } from "next/app";
-import Navbar from "components/Navbar";
-import Sidebar from "components/Sidebar";
-import { ThemeProvider } from "next-themes";
-import Head from "next/head";
-import { APP_NAME } from "lib/constant";
-import Command from "components/Command";
-import { useRouter } from "next/router";
+import Command from 'components/Command';
+import Navbar from 'components/Navbar';
+import Sidebar from 'components/Sidebar';
+import { APP_NAME } from 'lib/constant';
+import { ThemeProvider } from 'next-themes';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import 'styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
@@ -17,12 +17,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title> Google {APP_NAME} </title>
       </Head>
 
-      <ThemeProvider defaultTheme="dark" attribute="class">
+      <ThemeProvider defaultTheme='dark' attribute='class'>
         <Navbar />
         <Sidebar />
 
-        <div className="w-10/12 sm:w-3/4 m-auto p-3">
-          {pathname === "/" && <Command />}
+        <div className='mx-auto w-3/4'>
+          {pathname === '/' && <Command />}
           <Component {...pageProps} />
         </div>
       </ThemeProvider>

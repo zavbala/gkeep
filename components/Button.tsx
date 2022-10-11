@@ -1,34 +1,40 @@
-import cn from "classnames";
+import cn from 'classnames';
 
 interface ButtonProps {
   icon?: string;
-  size?: "sm" | "md" | "lg";
   filled?: boolean;
-  type?: "submit" | "button";
   disabled?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  type?: 'submit' | 'button';
   [x: string]: any;
 }
 
 const sizes = {
-  sm: "text-sm",
-  md: "text-lg",
-  lg: "text-xl",
+  sm: 'text-sm',
+  md: 'text-lg',
+  lg: 'text-xl',
 };
 
-const Button = ({ filled, icon, size, type, ...props }: ButtonProps) => {
+const Button = ({
+  filled,
+  icon,
+  size = 'md',
+  type = 'button',
+  ...props
+}: ButtonProps) => {
   return (
     <button
       {...props}
-      type={type || "button"}
+      type={type}
       className={
-        "w-10 h-10 rounded-full group hover:bg-shuttle-gray hover:bg-opacity-10 z-20"
+        'group z-20 flex h-10 w-10 items-center justify-center rounded-full hover:bg-shuttle-gray hover:bg-opacity-10'
       }
     >
       <span
         className={cn(
-          sizes[size || "lg"],
-          filled ? "material-icons" : "material-icons-outlined",
-          "text-bunker dark:text-loblolly group-hover:text-black dark:group-hover:text-white group-hover:bg-opacity-60"
+          sizes[size],
+          filled ? 'material-icons' : 'material-icons-outlined',
+          'text-bunker group-hover:bg-opacity-60 group-hover:text-black dark:text-loblolly dark:group-hover:text-white'
         )}
       >
         {icon}

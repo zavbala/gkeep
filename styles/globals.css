@@ -41,19 +41,20 @@
     @apply resize-none;
   }
 
-  span,
-  h1,
   a,
   p,
-  textarea,
+  h1,
+  svg,
+  span,
   input,
   small,
-  button {
+  button,
+  textarea {
     @apply block;
   }
 
-  span,
   svg,
+  span,
   small {
     @apply pointer-events-none;
   }

@@ -1,17 +1,17 @@
-import { useState, FormEvent } from "react";
-import Button from "./Button";
-import Notes from "lib/database";
-import { useSWRConfig } from "swr";
-import { useTheme } from "next-themes";
-import { Colors } from "lib/types";
-import cn from "classnames";
-import Palette from "components/Palette";
-import { PALETTE } from "lib/constant";
+import cn from 'classnames';
+import Palette from 'components/Palette';
+import { PALETTE } from 'lib/constant';
+import Notes from 'lib/database';
+import { Colors } from 'lib/types';
+import { useTheme } from 'next-themes';
+import { useState, useEffect, type FormEvent } from 'react';
+import { useSWRConfig } from 'swr';
+import Button from './Button';
 
 const initialValues = {
-  title: "",
-  content: "",
-  color: "",
+  title: '',
+  content: '',
+  color: 'default',
   pinned: false,
   status: true,
   archived: false,
@@ -20,6 +20,8 @@ const initialValues = {
 const Command = () => {
   const [toggle, setToggle] = useState(false);
   const [data, setData] = useState(initialValues);
+  const [mounted, setMounted] = useState(false);
+
   const { theme } = useTheme();
   const { mutate } = useSWRConfig();
 
@@ -38,7 +40,7 @@ const Command = () => {
         await Notes.create(data);
         setToggle(false);
         setData(initialValues);
-        mutate("/api/notes");
+        mutate('/api/notes');
       } catch (error) {
         //
       }
@@ -47,57 +49,65 @@ const Command = () => {
     setToggle(false);
   };
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <div
       className={cn(
-        "w-1/2 sm:w-full mx-auto my-10 rounded-lg shadow-md",
+        'mx-auto my-10 w-3/4 rounded-lg shadow-md lg:w-1/2',
         data.color
-          ? PALETTE[theme as "light" | "dark"][data.color as Colors]
-          : "bg-white dark:bg-shark",
-        (data.color === "default" || !data.color) &&
-          "dark:border dark:border-shuttle-gray"
+          ? PALETTE[theme as 'light' | 'dark'][data.color as Colors]
+          : 'bg-white dark:bg-shark',
+        (data.color === 'default' || !data.color) &&
+          'dark:border dark:border-shuttle-gray'
       )}
     >
       <form
         noValidate
-        onFocus={() => setToggle(true)}
-        autoComplete="off"
+        className='p-2'
+        autoComplete='off'
         onSubmit={handleSubmit}
-        className="p-2"
+        onFocus={() => setToggle(true)}
       >
         {toggle && (
-          <div className="flex items-center">
+          <div className='flex items-center'>
             <input
+              type='text'
+              name='title'
               value={data.title}
-              name="title"
+              placeholder='Title'
               onChange={handleChange}
-              type="text"
-              placeholder="Title"
-              className="w-full p-2 font-medium text-shark dark:text-athens-gray placeholder-oslo-gray break-words"
+              className='w-full break-words p-2 font-medium text-shark placeholder-oslo-gray dark:text-athens-gray'
             />
             <Button
-              onClick={() => setData({ ...data, pinned: !data.pinned })}
+              icon='push_pin'
               filled={data.pinned}
-              icon="push_pin"
+              onClick={() => setData({ ...data, pinned: !data.pinned })}
             />
           </div>
         )}
 
         <textarea
-          className="p-2 w-full text-shark dark:text-athens-gray text-sm placeholder:text-shark dark:placeholder:text-athens-gray"
+          name='content'
           value={data.content}
-          name="content"
-          placeholder="Take a note..."
           onChange={handleChange}
+          placeholder='Take a note...'
+          className='w-full p-2 text-sm text-shark placeholder:text-shark dark:text-athens-gray dark:placeholder:text-athens-gray'
         />
 
         {toggle && (
-          <div className="flex items-center justify-between ">
+          <div className='flex flex-col items-center justify-between gap-2 lg:flex-row'>
             <Palette state={data} setState={setData} />
 
             <button
-              type="submit"
-              className="p-2 text-sm font-medium rounded hover:bg-alabaster dark:hover:bg-gray-chateau dark:hover:bg-opacity-10 dark:text-iron"
+              type='submit'
+              className='w-full rounded bg-gray-chateau/10 p-2 text-sm font-medium dark:text-iron lg:w-auto lg:bg-transparent lg:hover:bg-alabaster lg:dark:hover:bg-gray-chateau/10'
             >
               Close
             </button>

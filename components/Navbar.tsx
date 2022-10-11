@@ -1,46 +1,54 @@
-import { useRouter } from "next/router";
-import Button from "./Button";
-import { useTheme } from "next-themes";
-import { APP_NAME } from "lib/constant";
-import Image from "next/image";
+import { APP_NAME } from 'lib/constant';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import Button from './Button';
 
-interface NavbarProps {}
-
-const classes = "text-xl capitalize text-shuttle-gray dark:text-mercury";
+const classes = 'text-xl capitalize text-shuttle-gray dark:text-mercury';
 
 const Navbar = () => {
   const { pathname } = useRouter();
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const isDarkMode = theme === "dark" ? true : false;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const isDarkMode = theme === 'dark' ? true : false;
 
   return (
-    <nav className="flex items-center justify-between px-5 sticky top-0 bg-white dark:bg-shark border-b dark:border-shuttle-gray border-iron h-[10vh] z-10">
-      <div className="flex items-center w-1/6">
-        {pathname === "/" ? (
+    <nav className='sticky top-0 z-40 flex h-[10vh] items-center justify-between border-b border-iron bg-white px-5 dark:border-shuttle-gray dark:bg-shark'>
+      <div className='flex w-full items-center lg:w-1/6'>
+        {pathname === '/' || pathname.includes('NOTE') ? (
           <Logo />
         ) : (
-          <h2 className={classes}> {pathname.split("/").join("")} </h2>
+          <h2 className={classes}> {pathname.split('/')[1]} </h2>
         )}
       </div>
 
-      <div className="sm:hidden flex items-center w-7/12 p-1 rounded-lg bg-porcelain dark:bg-abbey focus-within:bg-white focus-within:shadow transition-all duration-200">
-        <Button icon="search" />
-        <input type="search" className="w-full h-full" placeholder="Search" />
+      <div className='hidden w-7/12 items-center rounded-lg bg-porcelain p-1 transition-all duration-200 focus-within:bg-white focus-within:shadow dark:bg-abbey lg:flex'>
+        <Button icon='search' />
+        <input type='search' className='h-full w-full' placeholder='Search' />
       </div>
 
-      <div className="flex items-center gap-x-2">
+      <div className='flex items-center gap-x-2'>
         <Button
-          title={`${isDarkMode ? "Disable" : "Enable"} Dark Mode`}
-          icon={isDarkMode ? "dark_mode" : "light_mode"}
-          onClick={() => setTheme(isDarkMode ? "light" : "dark")}
+          icon={isDarkMode ? 'dark_mode' : 'light_mode'}
+          title={`${isDarkMode ? 'Disable' : 'Enable'} Dark Mode`}
+          onClick={() => setTheme(isDarkMode ? 'light' : 'dark')}
         />
         <a
-          href="https://github.com/zavbala/kepp"
-          target="_blank"
-          rel="noreferrer"
+          target='_blank'
+          rel='noreferrer'
+          href='https://github.com/zavbala/keppy'
         >
-          GitHub
+          GITHUB
         </a>
       </div>
     </nav>
@@ -49,12 +57,12 @@ const Navbar = () => {
 
 const Logo = () => {
   return (
-    <div className="flex items-center gap-x-2">
+    <div className='flex items-center gap-x-2'>
       <Image
-        alt="Vector"
-        src="https://cdn.svgporn.com/logos/google-keep.svg"
+        alt='Logo'
         width={35}
         height={35}
+        src='https://cdn.svgporn.com/logos/google-keep.svg'
       />
       <h2 className={classes}> {APP_NAME} </h2>
     </div>
