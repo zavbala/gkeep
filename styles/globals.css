@@ -7,6 +7,11 @@
   user-select: none;
 }
 
+.material-icons,
+.material-icons-outline {
+  font-size: 15px;
+}
+
 @layer base {
   * {
     @apply font-body;
@@ -57,5 +62,47 @@
   span,
   small {
     @apply pointer-events-none;
+  }
+}
+
+@layer components {
+  .animation {
+    @apply transition-all duration-200;
+  }
+
+  .side-item {
+    @apply flex h-10 w-10 cursor-pointer items-center justify-center rounded-full p-3 text-sm font-medium;
+  }
+
+  .side {
+    @apply fixed top-[10vh] m-auto flex h-[90vh] w-14 flex-col items-center gap-y-2 bg-white;
+  }
+
+  .command-text {
+    @apply w-full p-2 text-sm text-shark placeholder:text-shark dark:text-athens-gray dark:placeholder:text-athens-gray;
+  }
+
+  .command-title {
+    @apply w-full break-words p-2 font-medium text-shark placeholder-oslo-gray dark:text-athens-gray;
+  }
+
+  .command-btn {
+    @apply w-full rounded bg-gray-chateau/10 p-2 text-sm font-medium dark:text-iron;
+  }
+
+  .navbar {
+    @apply sticky top-0 z-40 flex h-[7vh] items-center justify-between border-b border-iron bg-white px-5 dark:border-shuttle-gray dark:bg-shark;
+  }
+
+  .tagline {
+    @apply mb-5 text-xs uppercase text-shuttle-gray dark:text-gray-chateau;
+  }
+
+  .action {
+    @apply text-bunker group-hover:bg-opacity-60 group-hover:text-black dark:text-loblolly dark:group-hover:text-white;
+  }
+
+  .action-btn {
+    @apply z-20 flex h-10 w-10 items-center justify-center rounded-full hover:bg-shuttle-gray hover:bg-opacity-10;
   }
 }

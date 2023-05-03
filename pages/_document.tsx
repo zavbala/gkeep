@@ -8,23 +8,24 @@ export default function Document() {
 
         <link
           rel='preconnect'
+          crossOrigin='anonymous'
           href='https://fonts.gstatic.com'
-          crossOrigin=''
         />
 
         <link
-          href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap'
           rel='stylesheet'
-        />
-
-        <link
           href='https://fonts.googleapis.com/css2?family=Material+Icons&display=swap'
-          rel='stylesheet'
         />
 
         <link
-          href='https://fonts.googleapis.com/css2?family=Material+Icons+Outlined&display=swap'
           rel='stylesheet'
+          href='https://fonts.googleapis.com/css2?family=Material+Icons+Outlined&display=swap'
+        />
+
+        <link
+          rel='shortcut icon'
+          type='image/x-icon'
+          href='https://ssl.gstatic.com/keep/keep_2020q4v2.ico'
         />
       </Head>
 

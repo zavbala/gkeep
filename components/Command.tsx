@@ -4,17 +4,17 @@ import { PALETTE } from 'lib/constant';
 import Notes from 'lib/database';
 import { Colors } from 'lib/types';
 import { useTheme } from 'next-themes';
-import { useState, useEffect, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { useSWRConfig } from 'swr';
 import Button from './Button';
 
 const initialValues = {
   title: '',
   content: '',
-  color: 'default',
-  pinned: false,
   status: true,
+  pinned: false,
   archived: false,
+  color: 'default',
 };
 
 const Command = () => {
@@ -83,7 +83,7 @@ const Command = () => {
               value={data.title}
               placeholder='Title'
               onChange={handleChange}
-              className='w-full break-words p-2 font-medium text-shark placeholder-oslo-gray dark:text-athens-gray'
+              className='command-title'
             />
             <Button
               icon='push_pin'
@@ -97,8 +97,8 @@ const Command = () => {
           name='content'
           value={data.content}
           onChange={handleChange}
+          className='command-text'
           placeholder='Take a note...'
-          className='w-full p-2 text-sm text-shark placeholder:text-shark dark:text-athens-gray dark:placeholder:text-athens-gray'
         />
 
         {toggle && (
@@ -107,7 +107,7 @@ const Command = () => {
 
             <button
               type='submit'
-              className='w-full rounded bg-gray-chateau/10 p-2 text-sm font-medium dark:text-iron lg:w-auto lg:bg-transparent lg:hover:bg-alabaster lg:dark:hover:bg-gray-chateau/10'
+              className='command-btn lg:w-auto lg:bg-transparent lg:hover:bg-alabaster lg:dark:hover:bg-gray-chateau/10'
             >
               Close
             </button>

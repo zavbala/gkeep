@@ -1,7 +1,8 @@
 import cn from 'classnames';
 import { PALETTE } from 'lib/constant';
-import type { Note } from 'lib/types';
 import { useTheme } from 'next-themes';
+
+import type { Note } from 'lib/types';
 
 interface PaletteProps {
   state: Omit<Note, 'id'>;

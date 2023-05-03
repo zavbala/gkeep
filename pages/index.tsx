@@ -2,8 +2,9 @@ import Card from 'components/Card';
 import Empty from 'components/Empty';
 import { Note } from 'lib/types';
 import { fetcher } from 'lib/utils';
-import type { ReactNode } from 'react';
 import useSWR from 'swr';
+
+import type { ReactNode } from 'react';
 
 const Home = () => {
   const { data, error } = useSWR('/api/notes', fetcher);
@@ -20,7 +21,7 @@ const Home = () => {
 
   return (
     <>
-      <section className='p-5'>
+      <section>
         {!data.length ? (
           <Empty message='Notes you add appear here' icon='lightbulb' />
         ) : !pinnedNotes.length ? (
@@ -31,20 +32,14 @@ const Home = () => {
           </Layout>
         ) : (
           <>
-            <small className='mb-5 text-xs uppercase text-shuttle-gray dark:text-gray-chateau'>
-              Pinned
-            </small>
-
+            <small className='tagline'>Pinned</small>
             <Layout>
               {pinnedNotes.map((note: Note, index: number) => (
                 <Card key={note.id || index} note={note} />
               ))}
             </Layout>
 
-            <small className='mb-5 text-xs uppercase text-shuttle-gray dark:text-gray-chateau'>
-              Others
-            </small>
-
+            <small className='tagline'>Others</small>
             <Layout>
               {notes.map((note: Note, index: number) => (
                 <Card key={note.id || index} note={note} />
@@ -63,7 +58,7 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className='mb-5 grid grid-cols-1 gap-5 p-2 md:grid-cols-3 lg:grid-cols-4'>
+    <div className='grid grid-cols-1 gap-3 p-2 md:grid-cols-3 lg:grid-cols-4'>
       {children}
     </div>
   );

@@ -1,13 +1,13 @@
 import cn from 'classnames';
 import { PALETTE } from 'lib/constant';
 import Notes from 'lib/database';
-import type { Colors } from 'lib/types';
-import { Note } from 'lib/types';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useSWRConfig } from 'swr';
 import Button from './Button';
+
+import type { Colors, Note } from 'lib/types';
 
 interface CardProps {
   note: Note;
@@ -88,7 +88,7 @@ const Card = ({ note, editable }: CardProps) => {
   return (
     <div
       className={cn(
-        'relative col-span-1 flex flex-col justify-between rounded-lg p-3 hover:shadow-md',
+        'relative col-span-1 flex h-[10vh] flex-col justify-between rounded-lg p-3 hover:shadow-md',
         color !== 'default' &&
           PALETTE[theme as 'light' | 'dark'][color as Colors],
         color === 'default' && 'border dark:border-shuttle-gray'

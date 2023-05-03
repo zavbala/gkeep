@@ -1,13 +1,13 @@
 module.exports = {
   content: [
+    './lib/constant.ts',
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
-    './lib/constant.ts',
   ],
   darkMode: 'class',
   theme: {
     fontFamily: {
-      body: ['Roboto', 'sans-serif'],
+      body: ['var(--font-roboto)', 'sans-serif'],
     },
     extend: {
       colors: {

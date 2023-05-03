@@ -1,4 +1,3 @@
-import type { FirebaseApp } from 'firebase/app';
 import {
   collection,
   deleteDoc,
@@ -9,6 +8,8 @@ import {
   setDoc,
 } from 'firebase/firestore/lite';
 import { createFirebaseApp } from './firebase';
+
+import type { FirebaseApp } from 'firebase/app';
 import type { Note } from './types';
 
 const firebase = createFirebaseApp() as FirebaseApp;

@@ -1,4 +1,3 @@
-import { APP_NAME } from 'lib/constant';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -16,14 +15,11 @@ const Navbar = () => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
-
+  if (!mounted) return null;
   const isDarkMode = theme === 'dark' ? true : false;
 
   return (
-    <nav className='sticky top-0 z-40 flex h-[10vh] items-center justify-between border-b border-iron bg-white px-5 dark:border-shuttle-gray dark:bg-shark'>
+    <nav className='navbar'>
       <div className='flex w-full items-center lg:w-1/6'>
         {pathname === '/' || pathname.includes('NOTE') ? (
           <Logo />
@@ -32,7 +28,7 @@ const Navbar = () => {
         )}
       </div>
 
-      <div className='hidden w-7/12 items-center rounded-lg bg-porcelain p-1 transition-all duration-200 focus-within:bg-white focus-within:shadow dark:bg-abbey lg:flex'>
+      <div className='animation hidden w-4/12 items-center rounded-lg bg-porcelain p-1 focus-within:bg-white focus-within:shadow dark:bg-abbey lg:flex'>
         <Button icon='search' />
         <input type='search' className='h-full w-full' placeholder='Search' />
       </div>
@@ -45,8 +41,8 @@ const Navbar = () => {
         />
         <a
           target='_blank'
-          rel='noreferrer'
-          href='https://github.com/zavbala/keppy'
+          rel='noreferrer noopener'
+          href='https://github.com/zavbala/gkeep'
         >
           GITHUB
         </a>
@@ -60,11 +56,11 @@ const Logo = () => {
     <div className='flex items-center gap-x-2'>
       <Image
         alt='Logo'
-        width={35}
-        height={35}
+        width={25}
+        height={25}
         src='https://cdn.svgporn.com/logos/google-keep.svg'
       />
-      <h2 className={classes}> {APP_NAME} </h2>
+      <h2 className={classes}> Keep </h2>
     </div>
   );
 };
