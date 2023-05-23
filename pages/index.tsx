@@ -52,13 +52,13 @@ const Home = () => {
   );
 };
 
-interface LayoutProps {
+interface Props {
   children: ReactNode;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children }: Props) => {
   return (
-    <div className='grid grid-cols-1 gap-3 p-2 md:grid-cols-3 lg:grid-cols-4'>
+    <div className='my-5 grid grid-cols-1 gap-3 p-2 md:grid-cols-3 lg:grid-cols-4'>
       {children}
     </div>
   );
